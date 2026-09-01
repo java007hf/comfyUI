@@ -1,0 +1,142 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux1-krea-dev_fp8_scaled.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "ModelSamplingFlux",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": 576,
+      "height": 1024
+    }
+  },
+  "3": {
+    "class_type": "DualCLIPLoader",
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "flux"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "3",
+        0
+      ],
+      "clip_l": "photorealistic original high-end glamour portrait of a different adult Chinese woman, not the same person as the input image, similar beauty type only: delicate refined V-shaped Chinese face, large calm almond eyes, refined nose bridge, small elegant lips, long black half-up hair, cool alluring gaze, slim waist and elegant hourglass figure, black lace corset evening dress, luxury indoor botanical lounge, moody cinematic window light, changed pose, changed background details, changed dress details, vertical fashion portrait from head to hips, realistic skin texture, sharp eyes, high detail",
+      "t5xxl": "photorealistic original high-end glamour portrait of a different adult Chinese woman, not the same person as the input image, similar beauty type only: delicate refined V-shaped Chinese face, large calm almond eyes, refined nose bridge, small elegant lips, long black half-up hair, cool alluring gaze, slim waist and elegant hourglass figure, black lace corset evening dress, luxury indoor botanical lounge, moody cinematic window light, changed pose, changed background details, changed dress details, vertical fashion portrait from head to hips, realistic skin texture, sharp eyes, high detail",
+      "guidance": 3.5
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "3",
+        0
+      ],
+      "clip_l": "child, teen, underage, nude, naked, explicit nudity, nipples, genitals, pornographic, sex act, low quality, blurry, bad anatomy, deformed hands, extra fingers, distorted face, cross-eyed, baby face, idol face, anime face, big smile, toothy smile, short bob haircut, flat body, shapeless torso, bulky waist, bad body proportions, identical copy, same exact person, same exact face, duplicate image, copied pose, unchanged reference image",
+      "t5xxl": "child, teen, underage, nude, naked, explicit nudity, nipples, genitals, pornographic, sex act, low quality, blurry, bad anatomy, deformed hands, extra fingers, distorted face, cross-eyed, baby face, idol face, anime face, big smile, toothy smile, short bob haircut, flat body, shapeless torso, bulky waist, bad body proportions, identical copy, same exact person, same exact face, duplicate image, copied pose, unchanged reference image",
+      "guidance": 3.5
+    }
+  },
+  "11": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "ref_20260528_142309.jpg"
+    }
+  },
+  "12": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "11",
+        0
+      ],
+      "upscale_method": "lanczos",
+      "width": 576,
+      "height": 1024,
+      "crop": "center"
+    }
+  },
+  "13": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "12",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ],
+      "latent_image": [
+        "13",
+        0
+      ],
+      "seed": 527142309,
+      "steps": 25,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.74
+    }
+  },
+  "9": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "8",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "9",
+        0
+      ],
+      "filename_prefix": "api_flux_img2img/ref142309"
+    }
+  }
+}

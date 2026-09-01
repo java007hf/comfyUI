@@ -1,0 +1,118 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux1-krea-dev_fp8_scaled.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "ModelSamplingFlux",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": 640,
+      "height": 896
+    }
+  },
+  "3": {
+    "class_type": "DualCLIPLoader",
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "flux"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "3",
+        0
+      ],
+      "clip_l": "photorealistic high-end editorial portrait of a stylish adult woman in modern fashion, realistic skin texture, natural light, sharp focus",
+      "t5xxl": "photorealistic high-end editorial portrait of a stylish adult woman in modern fashion, realistic skin texture, natural light, sharp focus",
+      "guidance": 3.5
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncodeFlux",
+    "inputs": {
+      "clip": [
+        "3",
+        0
+      ],
+      "clip_l": "",
+      "t5xxl": "",
+      "guidance": 3.5
+    }
+  },
+  "7": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 640,
+      "height": 896,
+      "batch_size": 1
+    }
+  },
+  "8": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "2",
+        0
+      ],
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "6",
+        0
+      ],
+      "latent_image": [
+        "7",
+        0
+      ],
+      "seed": 52710001,
+      "steps": 16,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0
+    }
+  },
+  "9": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "8",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "9",
+        0
+      ],
+      "filename_prefix": "api_flux/output"
+    }
+  }
+}
