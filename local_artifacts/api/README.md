@@ -9,13 +9,13 @@ POST http://127.0.0.1:8188/prompt
 Ready-to-submit workflow:
 
 ```text
-C:\workspace\ComfyUI\local_artifacts\api\flux_text2img_api.json
+D:\workspace\ComfyUI\local_artifacts\api\flux_text2img_api.json
 ```
 
 Python helper:
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 .\venv\Scripts\python.exe .\local_artifacts\api\call_flux_api.py `
   --prompt "photorealistic cinematic portrait of an adult woman in a modern city, natural light, realistic skin texture" `
   --width 640 --height 896 --steps 16 `
@@ -57,7 +57,7 @@ GET http://127.0.0.1:8188/view?filename=...&subfolder=...&type=output
 Generate 100 tasteful adult glamour/fashion images:
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 .\venv\Scripts\python.exe .\local_artifacts\api\generate_flux_beauty_batch.py `
   --count 100 `
   --width 640 `
@@ -80,7 +80,7 @@ Use `--style dark_glam --outfit-mode ref142309` for the black lace cinematic gla
 Use the downloaded reference image as an initial image:
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 .\venv\Scripts\python.exe .\local_artifacts\api\call_flux_img2img_ref_api.py `
   --image "ref_20260528_142309.jpg" `
   --width 576 `
@@ -112,13 +112,13 @@ Use `--variation-mode thigh_glam` to favor the `ref142309_002` direction: seated
 Output images are saved by ComfyUI under:
 
 ```text
-C:\workspace\ComfyUI\output\flux_beauty_batch
+D:\workspace\ComfyUI\output\flux_beauty_batch
 ```
 
 Each submitted job is appended to:
 
 ```text
-C:\workspace\ComfyUI\local_artifacts\api\flux_beauty_batch_manifest.jsonl
+D:\workspace\ComfyUI\local_artifacts\api\flux_beauty_batch_manifest.jsonl
 ```
 
 Preview prompts without generating:

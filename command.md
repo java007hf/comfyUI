@@ -4,10 +4,10 @@
 
 ## 基本信息
 
-- ComfyUI 目录：`C:\workspace\ComfyUI`
+- ComfyUI 目录：`D:\workspace\ComfyUI`
 - Web 地址：`http://127.0.0.1:8188`
 - 局域网访问：`http://<本机IP>:8188`
-- 启动脚本：`C:\workspace\ComfyUI\run_comfyui_nvidia.bat`
+- 启动脚本：`D:\workspace\ComfyUI\run_comfyui_nvidia.bat`
 - 当前启动参数包含：`--disable-api-nodes`
 - `--disable-api-nodes` 只禁用 ComfyUI 的线上付费 API 节点和前端联网能力，不会禁用本机的 `/prompt` 生图 API。
 
@@ -16,14 +16,14 @@
 推荐直接运行：
 
 ```bat
-cd /d C:\workspace\ComfyUI
+cd /d D:\workspace\ComfyUI
 run_comfyui_nvidia.bat
 ```
 
 等价的 PowerShell 启动命令：
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 .\venv\Scripts\python.exe .\main.py --listen 0.0.0.0 --port 8188 --lowvram --preview-method auto --disable-auto-launch --disable-api-nodes
 ```
 
@@ -105,7 +105,7 @@ http://127.0.0.1:8188
 提交已有 API workflow 示例：
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 
 $prompt = Get-Content .\local_sd35_turbo_api_prompt.json -Raw | ConvertFrom-Json
 $prompt."3".inputs.text = "a realistic red apple on a wooden table, studio lighting"
@@ -189,7 +189,7 @@ SaveImage
 当前已经有一个可用示例：
 
 ```text
-C:\workspace\ComfyUI\local_sd35_turbo_workflow.json
+D:\workspace\ComfyUI\local_sd35_turbo_workflow.json
 ```
 
 网页中加载方式：
@@ -206,12 +206,12 @@ C:\workspace\ComfyUI\local_sd35_turbo_workflow.json
 
 | 类型 | 目录 |
 | --- | --- |
-| SDXL/SD1.5/SD3.5 单文件 checkpoint | `C:\workspace\ComfyUI\models\checkpoints` |
-| LoRA | `C:\workspace\ComfyUI\models\loras` |
-| CLIP/T5 文本编码器 | `C:\workspace\ComfyUI\models\text_encoders` |
-| VAE | `C:\workspace\ComfyUI\models\vae` |
-| ControlNet | `C:\workspace\ComfyUI\models\controlnet` |
-| FLUX/Qwen/Wan 等部分新版模型主体 | `C:\workspace\ComfyUI\models\diffusion_models` 或按 workflow 要求放置 |
+| SDXL/SD1.5/SD3.5 单文件 checkpoint | `D:\workspace\ComfyUI\models\checkpoints` |
+| LoRA | `D:\workspace\ComfyUI\models\loras` |
+| CLIP/T5 文本编码器 | `D:\workspace\ComfyUI\models\text_encoders` |
+| VAE | `D:\workspace\ComfyUI\models\vae` |
+| ControlNet | `D:\workspace\ComfyUI\models\controlnet` |
+| FLUX/Qwen/Wan 等部分新版模型主体 | `D:\workspace\ComfyUI\models\diffusion_models` 或按 workflow 要求放置 |
 
 更新模型后，如果网页里没有显示：
 
@@ -220,8 +220,8 @@ C:\workspace\ComfyUI\local_sd35_turbo_workflow.json
 3. 用下面命令确认文件是否真的在正确目录。
 
 ```powershell
-Get-ChildItem C:\workspace\ComfyUI\models\checkpoints -File | Select-Object Name,Length
-Get-ChildItem C:\workspace\ComfyUI\models\loras -File | Select-Object Name,Length
+Get-ChildItem D:\workspace\ComfyUI\models\checkpoints -File | Select-Object Name,Length
+Get-ChildItem D:\workspace\ComfyUI\models\loras -File | Select-Object Name,Length
 ```
 
 ## 当前已安装模型
@@ -247,7 +247,7 @@ Get-ChildItem C:\workspace\ComfyUI\models\loras -File | Select-Object Name,Lengt
 本机已删除旧 SD1.5 模型：
 
 ```text
-C:\workspace\ComfyUI\models\checkpoints\v1-5-pruned-emaonly.safetensors
+D:\workspace\ComfyUI\models\checkpoints\v1-5-pruned-emaonly.safetensors
 ```
 
 ## 下载和更新模型
@@ -255,7 +255,7 @@ C:\workspace\ComfyUI\models\checkpoints\v1-5-pruned-emaonly.safetensors
 进入 ComfyUI 目录：
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 ```
 
 使用 Hugging Face 官方源下载：
@@ -282,7 +282,7 @@ Remove-Item Env:\HF_ENDPOINT -ErrorAction SilentlyContinue
 推荐模型下载命令：
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 $env:HF_HUB_DISABLE_XET = "1"
 
 .\venv\Scripts\hf.exe download RunDiffusion/Juggernaut-XI-v11 Juggernaut-XI-byRunDiffusion.safetensors --local-dir .\models\checkpoints
@@ -301,13 +301,13 @@ $env:HF_HUB_DISABLE_XET = "1"
 删除旧模型示例：
 
 ```powershell
-Remove-Item -LiteralPath C:\workspace\ComfyUI\models\checkpoints\v1-5-pruned-emaonly.safetensors
+Remove-Item -LiteralPath D:\workspace\ComfyUI\models\checkpoints\v1-5-pruned-emaonly.safetensors
 ```
 
 本机已删除：
 
 ```text
-C:\workspace\ComfyUI\models\checkpoints\v1-5-pruned-emaonly.safetensors
+D:\workspace\ComfyUI\models\checkpoints\v1-5-pruned-emaonly.safetensors
 ```
 
 ## 推荐参数
@@ -351,7 +351,7 @@ RTX 3060 12GB 建议：
 ## 更新 ComfyUI 程序
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 git pull
 .\venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
@@ -379,12 +379,12 @@ curl.exe -s http://127.0.0.1:8188/object_info/LoraLoader
 查看服务日志：
 
 ```powershell
-Get-Content C:\workspace\ComfyUI\comfyui.err.log -Tail 100
-Get-Content C:\workspace\ComfyUI\comfyui.out.log -Tail 100
+Get-Content D:\workspace\ComfyUI\comfyui.err.log -Tail 100
+Get-Content D:\workspace\ComfyUI\comfyui.out.log -Tail 100
 ```
 
 输出图片目录：
 
 ```text
-C:\workspace\ComfyUI\output
+D:\workspace\ComfyUI\output
 ```

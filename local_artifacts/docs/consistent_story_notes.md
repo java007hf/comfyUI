@@ -21,25 +21,25 @@
 高一致性 30 张：
 
 ```text
-C:\workspace\ComfyUI\output\consistent_story\panels
+D:\workspace\ComfyUI\output\consistent_story\panels
 ```
 
 总览图：
 
 ```text
-C:\workspace\ComfyUI\output\consistent_story\comic_overview_grid.jpg
+D:\workspace\ComfyUI\output\consistent_story\comic_overview_grid.jpg
 ```
 
 PDF：
 
 ```text
-C:\workspace\ComfyUI\output\consistent_story\consistent_story_high_consistency_comic.pdf
+D:\workspace\ComfyUI\output\consistent_story\consistent_story_high_consistency_comic.pdf
 ```
 
 参考候选图：
 
 ```text
-C:\workspace\ComfyUI\output\consistent_story\reference_candidates
+D:\workspace\ComfyUI\output\consistent_story\reference_candidates
 ```
 
 ## 已安装 IPAdapter 文件
@@ -47,15 +47,15 @@ C:\workspace\ComfyUI\output\consistent_story\reference_candidates
 节点：
 
 ```text
-C:\workspace\ComfyUI\custom_nodes\comfyui-ipadapter
+D:\workspace\ComfyUI\custom_nodes\comfyui-ipadapter
 ```
 
 模型：
 
 ```text
-C:\workspace\ComfyUI\models\ipadapter\ip-adapter-plus-face_sdxl_vit-h.safetensors
-C:\workspace\ComfyUI\models\ipadapter\ip-adapter-plus_sdxl_vit-h.safetensors
-C:\workspace\ComfyUI\models\clip_vision\CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors
+D:\workspace\ComfyUI\models\ipadapter\ip-adapter-plus-face_sdxl_vit-h.safetensors
+D:\workspace\ComfyUI\models\ipadapter\ip-adapter-plus_sdxl_vit-h.safetensors
+D:\workspace\ComfyUI\models\clip_vision\CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors
 ```
 
 ## 重跑命令
@@ -63,21 +63,21 @@ C:\workspace\ComfyUI\models\clip_vision\CLIP-ViT-H-14-laion2B-s32B-b79K.safetens
 先启动 ComfyUI：
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 .\run_comfyui_nvidia.bat
 ```
 
 生成角色参考候选：
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 .\venv\Scripts\python.exe .\generate_story_reference_candidates.py
 ```
 
 生成 30 张连环画。当前脚本是继续调试用的平衡版模板，默认输出到 `panels_final`：
 
 ```powershell
-cd C:\workspace\ComfyUI
+cd D:\workspace\ComfyUI
 .\venv\Scripts\python.exe .\generate_consistent_comic.py --start 1 --limit 30
 ```
 
